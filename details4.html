@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!--<link rel="stylesheet" href="./lib/jquery.mobile-1.4.5.css" type="text/css">-->
+    <!--<script src="./lib/jquery-2.2.4.min.js" type="text/javascript"></script>-->
+    <!--<script src="./js/mobileLoader.js" type="text/javascript"></script>-->
+    <!--<script src="./lib/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>-->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="./js/mobileLoader.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="Swiper/dist/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="Swiper/dist/css/swiper.min.css">
+
+    <!-- mb.extruder JS -->
+    <link href="Extruder/mbExtruder.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/mbExtruder.css" media="all" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="Extruder/jquery.hoverIntent.min.js"></script>
+    <script type="text/javascript" src="Extruder/jquery.mb.flipText.js"></script>
+    <script type="text/javascript" src="Extruder/mbExtruder.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="Pannellum/pannellum.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/pannellum.css">
+
+    <!-- 引入video.js的样式文件 -->
+    <!--<link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">-->
+    <link href="video-js/video-js.css" rel="stylesheet">
+    <!-- 如果没有使用Modernizr，则使用以下代码做shiv -->
+    <script type="text/javascript">
+        document.createElement('video');
+        document.createElement('audio');
+        document.createElement('track');
+    </script>
+    <!-- 引入video.js的脚本文件 -->
+    <!--<script src="http://vjs.zencdn.net/5.8.8/video.js"></script>-->
+    <script src="video-js/video.js"></script>
+    <!-- If you'd like to support IE8 -->
+    <!--<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>-->
+    <script src="video-js/videojs-ie8.min.js"></script>
+    <!-- 指定videojs的flash文件 -->
+    <script type="text/javascript">
+        videojs.options.flash.swf = "video-js/video-js.swf";
+    </script>
+    <script src="Pannellum/videojs-pannellum-plugin.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/header.css" type="text/css">
+    <link rel="stylesheet" href="css/footer.css" type="text/css">
+    <link rel="stylesheet" href="css/discovery.css" type="text/css">
+    <link rel="stylesheet" href="css/details2.css" type="text/css">
+    <link rel="stylesheet" href="css/details4.css" type="text/css">
+    <link rel="stylesheet" href="css/video-js.css" type="text/css">
+</head>
+<body>
+
+<script>
+    $.getUrlParam = function (string) {
+        var obj = new Object();
+        if (string.indexOf("?") != -1) {
+            var string = string.substr(string.indexOf("?") + 1);
+            var strs = string.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                var tempArr = strs[i].split("=");
+                obj[tempArr[0]] = tempArr[1];
+            }
+        }
+        return obj;
+    };
+
+    var datas = $.getUrlParam(window.location.href);
+</script>
+<script>
+    function GetAjaxData(detailID) {
+        $.ajax({
+            timeout: 2000,//请求超时时间（毫秒）
+            type: 'GET',
+            async: true,//异步
+            dataType: "json",//返回json格式的数据
+            url: "details.php?detailID=" + detailID,
+            success: function (data) {
+                var list = data.list;
+                var comment = data.comment;
+                var author = data.author;
+                var tags_about = data.tags_about;
+                var tags_about_name = data.tags_about_name;
+                var movie = "";
+                var info = "";
+                var cnt = "";
+                var tagli = "";
+
+                if(datas.panorama){
+                    $.each(list, function (i, n) {
+                        var img = n['img'];
+                        var tags = n['tags'];
+                        for(var i=0;i<tags.split('&').length;i++){
+                            $("#details .TagsCloud").append("<a href='' class='ui-link'>"+tags.split('&')[i]+"</a>");
+                        }
+                        movie += "<video id='panoramaVideo' class='example_video video-js vjs-default-skin vjs-big-play-centered' controls preload='none' style='background-image: url(" + img + ")' crossorigin='anonymous'><source src='" + n['linkVideo_mp4'] + "' type='video/mp4'><source src='" + n['linkVideo_ogv'] + "' type='video/ogg'><source src='" + n['linkVideo_webm'] + "' type='video/webm'><track kind='captions' src='video-js/video/" + n['linkTrack_en'] + "' srclang='en' label='English' default></track><track kind='captions' src='video-js/video/" + n['linkTrack_cn'] + "' srclang='cn' label='简体中文'></track><p class='vjs-no-js'>To view this video please enable JavaScript, and consider upgrading toa web browser that <a href='http://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a></p></video>";
+                        info += "<div class='title'>"+n['title']+"</div><div class='meta'>#"+n['classify']+" / "+n['timeInfo']+"</div><p class='description'>"+n['detailsCon']+"</p>";
+                        $("#details .themePic #videoPlayer").html(movie);
+                        $("#details .video-meta-positioner .video-meta").html(info);
+                        $("#details .footer .collection").html(n['collection']);
+                        $("#details #container .bg-blur").css('background-image','url('+img+')');
+                    });
+                    panoramaVideo();
+                }else {
+                    $.each(list, function (i, n) {
+                        var img = n['img'];
+                        var tags = n['tags'];
+                        for(var i=0;i<tags.split('&').length;i++){
+                            $("#details .TagsCloud").append("<a href='' class='ui-link'>"+tags.split('&')[i]+"</a>");
+                        }
+                        movie += "<video id='example_video_df' class='example_video video-js vjs-default-skin vjs-big-play-centered' controls preload='none' style='background-image: url(" + img + ")'><source src='" + n['linkVideo_mp4'] + "' type='video/mp4'><source src='" + n['linkVideo_ogv'] + "' type='video/ogg'><source src='" + n['linkVideo_webm'] + "' type='video/webm'><track kind='captions' src='video-js/video/" + n['linkTrack_en'] + "' srclang='en' label='English' default></track><track kind='captions' src='video-js/video/" + n['linkTrack_cn'] + "' srclang='cn' label='简体中文'></track><p class='vjs-no-js'>To view this video please enable JavaScript, and consider upgrading to a web browser that<a href='http://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a></p></video>";
+                        info += "<div class='title'>"+n['title']+"</div><div class='meta'>#"+n['classify']+" / "+n['timeInfo']+"</div><p class='description'>"+n['detailsCon']+"</p>";
+                        $("#details .themePic #videoPlayer").html(movie);
+                        $("#details .video-meta-positioner .video-meta").html(info);
+                        $("#details .footer .collection").html(n['collection']);
+                        $("#details #container .bg-blur").css('background-image','url('+img+')');
+                    });
+                    example_video_df();
+                }
+
+                if(comment) {
+                    $.each(comment, function (i, n) {
+                        cnt += "<li class='comment'><a href='' class='avater'><img src='" + author[i].img + "'></a><div class='info'><div class='name'>" + author[i].nickname + "<div class='zhan'><img src='img/thumb-up.svg'>&nbsp;" + n['upvote'] + "</div></div><div class='cnt'>" + n['text'] + "</div><div class='meta'>回复&nbsp; · &nbsp;" + n['time'] + "</div></div></li>";
+                    });
+                    $("#details #comment .all-comment").html(cnt);
+                }else {
+                    $("#details #comment .all-comment .sofa").html("还没有人评论,快来抢沙发!");
+                }
+
+                if(tags_about) {
+                    var itagNamePosition=0;
+                    $.each(tags_about, function (i, n) {
+//                        alert(tags_about[i]);
+                        for(var j=0;j<tags_about[i].length;j++){
+//                            alert(tags_about[i][j]['title']);
+                            tags_about[i][j] = "<div class='swiper-slide'><div class='unit-table'><div class='swiper-slide-img'><img src='"+tags_about[i][j]['img']+"'></div><div class='swiper-slide-text'><a href='details4.html?id=" + tags_about[i][j]['id'] +"' data-role='none'><div class='title'>"+tags_about[i][j]['title']+"</div><div class='meta'>#"+tags_about[i][j]['classify']+" / "+tags_about[i][j]['timeInfo']+"</div></a></div></div></div>";
+                        }
+                        tagli += "<div class='tags_about_li'><h2 class='sw-title'><a href=''>"+ tags_about_name[itagNamePosition] +"相关视频</a></h2><div class='swiper-containerE'><div class='swiper-wrapper'>"+tags_about[i]+"</div></div></div>";
+                        itagNamePosition++;
+                    });
+                    $("#details #tags_about").html(tagli);
+                    swiper_containerE();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus) {
+//                alert("异常信息：" + textStatus);
+            }
+        })
+    }
+
+    $(document).on("pagebeforecreate", "#details", function () {
+        GetAjaxData(datas.id);
+    })
+</script>
+
+<div data-role="page" id="details">
+    <div data-role="header" data-theme="b" data-position="fixed" id="header" style="background: none;border: none;">
+        <a href="" class="icon leftArrow" data-rel="back"></a>
+    </div>
+
+    <div class="themePic" id="themePic">
+        <div id="videoPlayer">
+            <!--<video id='example_video_df' class="example_video video-js vjs-default-skin vjs-big-play-centered"-->
+            <!--controls preload="none"-->
+            <!--poster="http://vjs.zencdn.net/v/oceans.png"-->
+            <!--data-setup='{ "html5" : { "nativeTextTracks" : false } }'>-->
+            <!--<source src="video-js/video/google_spotlightVR.webm" type="video/webm">-->
+            <!--<source src="http://video.xinpianchang.com/585bc94c657f9.mp4" type="video/mp4">-->
+            <!--<track kind="captions" src="video-js/video/captions.en.vtt" srclang="en" label="English"-->
+            <!--default></track>&lt;!&ndash; Tracks need an ending tag thanks to IE9 &ndash;&gt;-->
+            <!--<track kind="captions" src="video-js/video/captions.ru.vtt" srclang="ru"-->
+            <!--label="Russian"></track>-->
+            <!--<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a-->
+            <!--web browser that-->
+            <!--<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>-->
+            <!--</p>-->
+            <!--</video>-->
+            <!--<script>video();</script>-->
+
+            <!--<video id="panoramaVideo" class="panorama video-js vjs-default-skin vjs-big-play-centered" controls preload="none"-->
+                   <!--poster="http://cs.xinpianchang.com/uploadfile/article/2016/11/22/5833cb529e926.jpeg@960w.jpg" crossorigin="anonymous">-->
+                <!--&lt;!&ndash;<source src="/images/video/jfk.webm" type="video/webm"/>&ndash;&gt;-->
+                <!--<source src="http://video.xinpianchang.com/583399ffdd6ec.mp4" type="video/mp4"/>-->
+                <!--<p class="vjs-no-js">-->
+                    <!--To view this video please enable JavaScript, and consider upgrading to-->
+                    <!--a web browser that <a href="http://videojs.com/html5-video-support/"-->
+                                          <!--target="_blank">supports HTML5 video</a>-->
+                <!--</p>-->
+            <!--</video>-->
+        </div>
+    </div>
+
+    <div data-role="content" id="container">
+        <div class="bg-blur"></div>
+        <div class="video-info">
+            <div class="video-meta-positioner">
+                <div class="video-meta">
+                    <!--<div class="title">天天对着毕加索调酒成就的一代名师</div>-->
+                    <!--<div class="meta">开胃 / 3' 38"</div>-->
+                    <!--<p class="description">瑞士苏黎世 Kronenhalle 餐厅，被誉为餐厅界的“贵妇人”，65 岁的调酒师 Peter Roth 在那里工作了 40 多年，他自创鸡尾酒 300-->
+                        <!--多款，获奖无数，被誉为瑞士国宝级调酒师。</p>-->
+                </div>
+                <div id="tags_cloud">
+                    <h2 class="sw-title"><a href="#">相关标签</a></h2>
+                    <div class="TagsCloud">
+                        <!--<a href="" class="ui-link">666</a>-->
+                        <!--<a href="" class="ui-link">奥斯卡</a>-->
+                    </div>
+                </div>
+            </div>
+
+            <div id="tags_about">
+                <!--<div class='tags_about_li'>-->
+                    <!--<h2 class='sw-title'><a href=''>搞笑相关视频</a></h2>-->
+                    <!--<div class='Swiper-containerE'>-->
+                        <!--<div class='Swiper-wrapper'>-->
+                            <!--<div class='Swiper-slide'>-->
+                                <!--<div class='unit-table'>-->
+                                    <!--<div class='Swiper-slide-img'>-->
+                                        <!--<img src="img/panorama/99770e7ebad8ef20f35f88a6a36aa5d0.jpg" alt="">-->
+                                    <!--</div>-->
+                                    <!--<div class='Swiper-slide-text'>-->
+                                        <!--<a href='details4.html' data-role='none'>-->
+                                            <!--<div class='title'>Papercraft Origami Boxes</div>-->
+                                            <!--<div class='meta'>#动画 / 2016-12-10</div>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+
+            <div id="comment">
+                <h2 class="sw-title"><a href="#">热门评论</a></h2>
+                <ul class="all-comment">
+                    <!--<li class="comment">-->
+                        <!--<a href="" class="avater">-->
+                            <!--<img src="" alt="">-->
+                        <!--</a>-->
+                        <!--<div class="info">-->
+                            <!--<div class="name">李白<div class="zhan"><img src="img/thumb-up.svg" alt="">&nbsp;198</div></div>-->
+                            <!--<div class="cnt">Mark......</div>-->
+                            <!--<div class="meta">回复&nbsp; · &nbsp;2017-04-12</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <div class="sofa"></div>
+                </ul>
+            </div>
+
+            <p style="color: #fff;font-size:12px;text-align: center;margin: 40px;padding-bottom: 48px;">-The End-</p>
+
+        </div>
+    </div>
+
+    <div data-role="popup" id="popupBasic" data-overlay-theme="b" class="popup">
+        <a href="#" data-rel="back" data-role="button" class="ui-btn ui-btn-a ui-icon-delete ui-btn-icon-notext ui-corner-all ui-btn-right">关闭</a>
+        <div class="content" align="center">
+            <h3>你还没有登录哦!</h3>
+            <h5>登陆后可以收藏喜欢的内容</h5>
+            <a href="index.html#register" data-role="button" class="signUp">注册</a>
+            <a href="index.html#login" data-role="button" class="signIn">登录</a>
+        </div>
+    </div>
+
+    <div data-role="popup" id="popupComment" data-overlay-theme="b" class="popup">
+        <a href="#" data-rel="back" data-role="button" class="ui-btn ui-btn-a ui-icon-delete ui-btn-icon-notext ui-corner-all ui-btn-left">关闭</a>
+        <h3 align="center">评论</h3>
+        <form action="">
+            <textarea placeholder="发 表 你 的 评 论 ..." style="box-shadow: none;"></textarea>
+        </form>
+    </div>
+
+    <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" data-role="button" data-icon="forward">分享</a></li>
+                <li><a href="#" data-role="button" data-icon="love" onclick="GetAjaxOnOff('collection');"><span class="collection">0</span> 收藏</a></li>
+                <li><a href="#popupComment" data-role="button" data-icon="comment" data-transition="slideup" data-rel="popup">12 评论</a></li>
+                <li><a href="#" data-role="button" data-icon="ellipsis">更多</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 收藏 -->
+<script>
+    function GetAjaxOnOff(th) {
+        $.ajax({
+            timeout: 2000,//请求超时时间（毫秒）
+            type: 'GET',
+            url: "login_status.php",
+            dataType: "json",
+            success: function (msg) {
+                var status = msg.status;
+                if (status != "") {
+                    switch (status) {
+                        case "online":
+//                            alert("online");
+                                if(th=='collection'){
+                                    collection(datas.id,msg.cookie_id);
+                                }else if(th=='upvote'){
+                                    collection(datas.id,msg.cookie_id);
+                                }
+                            break;
+                        case "offline":
+//                            alert("您还没登录!");
+//                            $("#popupBasic .word").html("您还没登录");
+//                            $("#popupBasic").popup({transition: "fade"});
+                            $("#popupBasic").popup("open",{transition: "pop"});
+                            break;
+                    }
+                }
+            }
+        });
+    }
+
+//    GetAjaxOnOff();
+
+    function collection(detailID,author_id) {
+        $.ajax({
+            timeout: 2000,//请求超时时间（毫秒）
+            type: 'GET',
+            async: true,//异步
+            dataType: "json",//返回json格式的数据
+            url: "collection.php?detailID=" + detailID + "&author_id=" + author_id,
+            success: function (data) {
+                var collection = data.collection;
+                var status = data.status;
+                alert(status);
+                $("#details .footer .collection").html(collection);
+                if(status==true){
+                    $("#details .footer .ui-icon-love").removeClass('active');
+                }else {
+                    $("#details .footer .ui-icon-love").addClass('active');
+                }
+            }
+        })
+    }
+
+//    $("#details .footer .ui-icon-love").on('tap',function () {
+//        GetAjaxOnOff();
+//    })
+</script>
+
+<!-- Initialize Swiper -->
+<script>
+    function swiper_containerE() {
+        var swiper = new Swiper('.swiper-containerE', {
+            paginationClickable: true,
+            slidesPerView: "auto",
+            spaceBetween: 4,
+            freeMode: true,//自由滚动
+            grabCursor: true,    //手掌形状
+            autoplayDisableOnInteraction: false,
+            observer: true,//修改swiper自己或子元素时，自动初始化swiper
+            observeParents: true,//修改swiper的父元素时，自动初始化swiper
+        })
+    }
+</script>
+
+<!-- 初始化video.js -->
+<script>
+    function example_video_df() {
+        videojs('example_video_df', {
+            techOrder: ["html5", "flash"],
+            bigPlayButton: true,
+            textTrackDisplay: false,
+            posterImage: true,
+            errorDisplay: true,
+            controlBar: {
+                captionsButton: false,
+                chaptersButton: false,
+                subtitlesButton: false,
+                liveDisplay: false,
+                playbackRateMenuButton: true
+            }
+        })
+    }
+
+    function panoramaVideo() {
+        videojs('panoramaVideo', {
+            plugins: {
+                pannellum: {}
+            }
+        })
+    }
+</script>
+
+<!-- 去除.theme-video内的jqueryMobile样式 -->
+<script>
+    $(".themePic input").attr('data-role', 'none');
+    $(".themePic select").attr('data-role', 'none');
+    $(".themePic button").attr('data-role', 'none');
+</script>
+
+</body>
+</html>
