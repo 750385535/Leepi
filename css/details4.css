@@ -1,0 +1,97 @@
+#details {
+    padding-top: 0 !important;
+}
+
+#details .themePic {
+    height: 0;
+    z-index: 10;
+    padding-bottom: 56.25%;
+}
+
+#details .themePic #videoPlayer .example_video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+}
+
+#details .themePic #videoPlayer {
+    width: 100%;
+    height: 100%;
+}
+
+#details #container {
+    height: auto;
+    top: 56.25vw;
+    position: relative;
+    z-index: 1;
+}
+
+#details #container .video-info {
+    position: relative;
+}
+
+#details #container .video-info .video-meta-positioner {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+#details .bg-blur-box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    padding-top: 56.25%;
+    box-sizing: border-box;
+}
+
+#details .bg-blur {
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    -webkit-filter: blur(16vw) brightness(0.5);
+    -moz-filter: blur(16vw) brightness(0.5);
+    -o-filter: blur(16vw) brightness(0.5);
+    -ms-filter: blur(16vw);
+    filter: blur(16vw) brightness(0.5);
+
+    -moz-transform:scaleY(-1);
+    -webkit-transform:scaleY(-1);
+    -o-transform:scaleY(-1);
+    transform:scaleY(-1);
+}
+
+#details .video-meta-positioner .video-meta {
+    padding: 1em;
+    /*padding-bottom: 0;*/
+}
+
+#details .video-meta-positioner .video-meta .title {
+    color: white;
+    margin: 12px 0;
+    font-size: 20px;
+    text-align: justify;
+    font-weight: 700 !important;
+}
+
+#details .video-meta-positioner .video-meta .meta {
+    color: #ccc;
+    font-size: 12px;
+    margin: 12px 0;
+}
+
+#details .video-meta-positioner .video-meta .description {
+    color: #ccc;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-align: justify;
+    justify-content: space-between;
+    text-justify: inter-word;
+    margin-top: 2em;
+}
+
+#details .footer {
+    opacity: 1;
+}

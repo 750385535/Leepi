@@ -1,0 +1,149 @@
+.ui-footer {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.footer {
+    position: fixed;
+}
+
+.footer a.ui-btn {
+    padding: 0;
+}
+
+.footer div[data-role=navbar] li a.ui-btn {
+    color: #666;
+    height: 48px;
+    font-size: 10px;
+    line-height: 78px;
+    background: #ffffff;
+}
+
+.footer div[data-role=navbar] li a.ui-btn-active.ui-state-persist {
+    color: #46008c;
+    box-shadow: none;
+}
+
+.footer div[data-role=navbar] li a:focus {
+    box-shadow: none;
+}
+
+.footer div[data-role=navbar] li a:after {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 2px;
+    background-size: 22px 22px;
+    padding: 6px 0;
+    top: 0;
+}
+
+.ui-icon-House:after {
+    background-image: url(../img/navbaricon/shapes.svg);
+}
+
+.ui-btn-active.ui-state-persist.ui-icon-House:after {
+    background-image: url(../img/navbaricon/shapes01.svg);
+}
+
+.active.ui-icon-House:after {
+    background-image: url(../img/navbaricon/shapes01.svg);
+}
+
+.ui-icon-Music:after {
+    background-image: url(../img/navbaricon/music.svg);
+}
+
+.ui-btn-active.ui-state-persist.ui-icon-Music:after {
+    background-image: url(../img/navbaricon/music01.svg);
+}
+
+.ui-icon-interface:after {
+    background-image: url(../img/navbaricon/found01.svg);
+}
+
+.ui-btn-active.ui-state-persist.ui-icon-interface:after {
+    background-image: url(../img/navbaricon/found02.svg);
+}
+
+.ui-icon-Profile:after {
+    background-image: url(../img/navbaricon/layers.svg);
+}
+
+.ui-btn-active.ui-state-persist.ui-icon-Profile:after {
+    background-image: url(../img/navbaricon/layers01.svg);
+}
+
+.ui-icon-Menu:after {
+    background-image: url(../img/menu-options2.svg);
+}
+
+.kai.ui-icon-Menu:after {
+    background-image: url(../img/down-arrow.svg);
+}
+
+/******************detailed-footer-style-start***********************/
+.ui-icon-forward:after {
+    background-image: url(../img/multimedia-1.svg);
+}
+
+.ui-icon-comment:after {
+    background-image: url(../img/comment.svg);
+}
+
+.ui-icon-thumb_up:after {
+    background-image: url(../img/thumb-up.svg);
+}
+
+.ui-icon-love:after {
+    background-image: url(../img/heart1.svg);
+}
+
+.ui-icon-love.active:after {
+    background-image: url(../img/heart-shape-silhouette.svg);
+}
+
+.ui-icon-leftArrow:after {
+    background-image: url(../img/next.svg);
+}
+
+.ui-icon-ellipsis:after {
+    background-image: url(../img/ellipsis.svg);
+}
+/******************detailed-footer-style-end*************************/
+
+.ui-icon-delete.ui-btn-right {
+    top: 4px !important;
+    right: 4px !important;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.ui-icon-delete.ui-btn-left {
+    top: 4px !important;
+    left: 4px !important;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.ui-icon-delete:after {
+    background-color: white;
+    background-image: url(../img/deleteicon.svg);
+    background-size: 70%;
+    opacity: 0.5;
+}
+
+.ui-icon-rights.ui-btn-right {
+    top: 4px !important;
+    right: 4px !important;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.ui-icon-rights:after {
+    background-color: white;
+    background-image: url(../img/right.svg);
+    background-size: 90%;
+    opacity: 0.5;
+}

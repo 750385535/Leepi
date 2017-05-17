@@ -1,0 +1,128 @@
+.ui-panel-display-overlay {
+    z-index: 1111;
+}
+
+.ui-panel-dismiss {
+    z-index: 1110;
+    position: fixed;
+    right: 0 !important;
+    background-color: rgba(37, 37, 37, 0.5);
+}
+
+.ui-panel-inner {
+    padding: 0;
+}
+
+.mypanel {
+    background-color: #333333 !important;
+}
+
+.mypanel .panelHead {
+    /*background-color: #2a253b;*/
+    padding: 1em;
+}
+
+.mypanel .panelHead a.user_name {
+    line-height: 4em;
+    margin-left: 5em;
+    color: white !important;
+    text-decoration: none;
+}
+
+.mypanel .panelHead a.avater {
+    width: 4em;
+    height: 4em;
+    position: absolute;
+    border-radius: 50%;
+    background: #f2f2f2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../img/black.svg);
+    background-size: 50%;
+}
+
+.mypanel .panelMenu {
+    padding: 1em;
+}
+
+.mypanel .panelMenu ul li a.ui-icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+}
+
+.mypanel .panelMenu ul li a.ui-icon:after {
+    background-color: rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 22px 22px;
+    border-radius: 2px;
+    opacity: 0.7;
+}
+
+.mypanel .panelMenu ul li a.ui-icon-carat-Follow:after {
+    background-image: url(../img/following-light.svg);
+}
+
+.mypanel .panelMenu ul li a.ui-icon-carat-Love:after {
+    background-image: url(../img/love.svg);
+}
+
+.mypanel .panelMenu ul li a.ui-icon-carat-Bulb:after {
+    background-image: url(../img/clear-night.svg);
+}
+
+.mypanel .panelMenu ul li a.ui-icon-carat-Earth:after {
+    background-image: url(../img/earth.svg);
+}
+
+.mypanel .panelMenu ul li a.ui-icon-carat-Help:after {
+    background-image: url(../img/help.svg);
+}
+
+.mypanel .panelMenu ul li a.ui-icon-carat-About:after {
+    background-image: url(../img/about.svg);
+}
+
+.mypanel .panelMenu ul li a.ui-btn-icon-left {
+    padding: 1em 1em;
+    padding-left: 3.5em;
+    box-shadow: none;
+}
+
+.mypanel .panelMenu .ui-flipswitch {
+    width: 48px;
+    height: 24px;
+    margin: 0;
+    border-radius: 48px !important;
+    border-color: #ddd;
+    box-shadow: none !important;
+}
+
+.mypanel .panelMenu .ui-flipswitch.ui-flipswitch-active {
+    width: 24px;
+    overflow: hidden;
+    padding-left: 24px;
+    background: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.mypanel .panelMenu .ui-flipswitch .ui-btn.ui-flipswitch-on {
+    width: 26px;
+    height: 26px;
+    margin: 0;
+    margin-left: -1px;
+    margin-top: -1px;
+    position: absolute;
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ICP {
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 1em;
+    color: rgba(0, 0, 0, 0.4);
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="./lib/jquery.mobile-1.4.5.css" type="text/css">
+    <script src="./lib/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="./js/mobileLoader.js" type="text/javascript"></script>
+    <script src="./lib/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="Pannellum/pannellum.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/pannellum.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/header.css" type="text/css">
+    <link rel="stylesheet" href="css/footer.css" type="text/css">
+    <link rel="stylesheet" href="css/discovery.css" type="text/css">
+    <link rel="stylesheet" href="css/details2.css" type="text/css">
+</head>
+<body>
+
+<script>
+    $.getUrlParam = function (string) {
+        var obj = new Object();
+        if (string.indexOf("?") != -1) {
+            var string = string.substr(string.indexOf("?") + 1);
+            var strs = string.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                var tempArr = strs[i].split("=");
+                obj[tempArr[0]] = tempArr[1];
+            }
+        }
+        return obj;
+    };
+
+    var data = $.getUrlParam(window.location.href);
+</script>
+<script>
+    function GetAjaxPannellumData() {
+        $.ajax({
+            timeout: 2000,//请求超时时间（毫秒）
+            type: 'GET',
+            async: true,//异步
+            dataType: "json",//返回json格式的数据
+            url: "Ajax/Pannellum.php?id=" + data.id,
+            success: function (data) {
+                var pannellum = data.pannellum;
+                var hotSpots = data.hotSpots;
+                var hot = new Array;
+                var scenes = [];
+                var firstScene = "";
+
+                $.each(pannellum, function (k1, v1) {
+//                    var scenes = {
+//                        "circle": {
+//                            "hfov": 110,
+//                            "pitch": -3,
+//                            "yaw": 117,
+//                            "type": "equirectangular",
+//                            "panorama": v1['panorama'],
+//                            "hotSpots": hot
+//                        },"house": {
+//                            "hfov": 120,
+//                            "pitch": -3,
+//                            "yaw": 117,
+//                            "type": "equirectangular",
+//                            "panorama": v1['panorama'],
+//                            "hotSpots": hot
+//                        }
+//                    };
+
+                    hot[v1['sceneId']]=new Array();
+
+                    $.each(hotSpots[v1['sceneId']], function (sd, as) {
+
+                        if (as['class'] == 'point') {
+                            hot[v1['sceneId']].push({
+                                "pitch": as['pitch'],
+                                "yaw": as['pitch'],
+                                "cssClass": "" + as['cssClass'],
+                                "createTooltipFunc": hotspot,
+                                "createTooltipArgs": "<img src='" + as['img'] + "' alt=''>"
+                            });
+                        } else if (as['class'] == 'arrow') {
+                            hot[v1['sceneId']].push({
+                                "pitch": as['pitch'],
+                                "yaw": as['pitch'],
+                                "type": "" + as['type'],
+                                "text": "" + as['text'],
+                                "sceneId": "" + as['sceneId']
+                            });
+                        }
+
+                    });
+
+                    scenes[v1['sceneId']]={
+                        "hfov": v1['hfov'],
+                        "pitch": v1['pitch'],
+                        "yaw": v1['yaw'],
+                        "type": ""+v1['type'],
+                        "panorama": v1['panorama'],
+                        "hotSpots": hot[v1['sceneId']]
+                    };
+
+                    firstScene = v1['sceneId'];
+                });
+
+                getPannellum(scenes,firstScene);
+//                console.log(hot);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        GetAjaxPannellumData();
+    })
+</script>
+
+<div data-role="page" id="details">
+    <!--<div data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false" id="header" style="background: none;border: none;">-->
+        <!--<a href="" class="icon leftArrow" data-rel="back"></a>-->
+    <!--</div>-->
+
+    <div class="themePic" id="themePic">
+        <div id="panorama">
+            <div id="controls">
+                <div class="ctrl" id="fullscreen" style="display: none;"></div>
+                <div class="ctrl" id="autoRotate" style="display: none;">R</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Pannellum 全景调用 -->
+<!--<script>-->
+    <!--// Create viewer-->
+    <!--function getPannellum(img,hotp) {-->
+        <!--var viewer = Pannellum.viewer('panorama', {-->
+            <!--"default": {-->
+                <!--"firstScene": "circle",-->
+                <!--"sceneFadeDuration": 1000,-->
+                <!--"preview": img,-->
+                <!--"autoLoad": true,-->
+                <!--"autoRotate": -2,   //自动旋转,正左,负右,越大越快-->
+                <!--"compass": true,-->
+                <!--"showControls": false,-->
+                <!--"northOffset": 340,-->
+                <!--"autoRotateInactivityDelay": 5000,   //动作停止五秒后继续旋转-->
+                <!--"targetPitch": 10-->
+            <!--},-->
+
+            <!--"scenes": {-->
+                <!--"circle": {-->
+                    <!--"hfov": 110,-->
+                    <!--"pitch": -3,-->
+                    <!--"yaw": 117,-->
+                    <!--"type": "equirectangular",-->
+                    <!--"panorama": img,-->
+                    <!--"hotSpots": [-->
+                        <!--{-->
+                            <!--"pitch": -20.1,-->
+                            <!--"yaw": -140.9,-->
+                            <!--"type": "scene",-->
+                            <!--"text": "Spring House or Dairy",-->
+                            <!--"sceneId": "house"-->
+                        <!--},-->
+                        <!--{-->
+                            <!--"pitch": -10,-->
+                            <!--"yaw": 20,-->
+                            <!--"cssClass": "custom-hotspot",-->
+                            <!--"createTooltipFunc": hotspot,-->
+                            <!--"createTooltipArgs": "<img src='img/panorama/googlespotlightVR.png' alt=''>"-->
+                        <!--},-->
+                        <!--{-->
+                            <!--"pitch": -17,-->
+                            <!--"yaw": 52,-->
+                            <!--"cssClass": "custom-hotspot",-->
+                            <!--"createTooltipFunc": hotspot,-->
+                            <!--"createTooltipArgs": "<img src='img/panorama/googlespotlightVR.png' alt=''>"-->
+                        <!--}-->
+                    <!--]-->
+                <!--},-->
+
+                <!--"house": {-->
+                    <!--"hfov": 110,-->
+                    <!--"yaw": 5,-->
+                    <!--"type": "equirectangular",-->
+                    <!--"panorama": img,-->
+                    <!--"hotSpots": [-->
+                        <!--{-->
+                            <!--"pitch": -0.6,-->
+                            <!--"yaw": 37.1,-->
+                            <!--"type": "scene",-->
+                            <!--"text": "Mason Circle",-->
+                            <!--"sceneId": "circle",-->
+                            <!--"targetYaw": -23,-->
+                            <!--"targetPitch": 2-->
+                        <!--}-->
+                    <!--]-->
+                <!--}-->
+            <!--}-->
+        <!--});-->
+
+        <!--// Make buttons work-->
+        <!--document.getElementById('fullscreen').addEventListener('click', function (e) {-->
+            <!--viewer.toggleFullscreen();-->
+        <!--});-->
+        <!--//    document.getElementById('autoRotate').addEventListener('click', function(e) {-->
+        <!--//        viewer.startAutoRotate(2);-->
+        <!--//    });-->
+        <!--//-->
+        <!--//    setInterval(function () {//每隔5秒执行一次-->
+        <!--//        $('#autoRotate').trigger("click");//自动执行click事件-->
+        <!--//    },5000);-->
+
+        <!--// 全景加载完显示全屏按钮-->
+        <!--viewer.on("load", function () {-->
+            <!--$("#fullscreen").css("display", "block");-->
+        <!--});-->
+    <!--}-->
+
+
+    <!--// Hot spot creation function-->
+    <!--function hotspot(hotSpotDiv, args) {-->
+        <!--hotSpotDiv.classList.add('custom-tooltip');-->
+        <!--var span = document.createElement('span');-->
+        <!--span.innerHTML = args;-->
+        <!--hotSpotDiv.appendChild(span);-->
+        <!--span.style.width = span.scrollWidth + 'px';-->
+        <!--span.style.marginLeft = -(span.offsetWidth + 4 - hotSpotDiv.offsetWidth) / 2 + 'px';-->
+        <!--span.style.marginTop = -span.offsetWidth - 18 + 'px';-->
+    <!--}-->
+
+    <!--// .pnlm-load-button 加载按钮重写-->
+    <!--$(".pnlm-load-button").html("<p style='font-size: 40px;display: none;'>▶</p>");-->
+<!--</script>-->
+<script>
+    // Create viewer
+//    function getPannellum(img,scenes,firstScene) {
+    function getPannellum(scenes,firstScene) {
+        var viewer = pannellum.viewer(
+                'panorama', {
+                    "default": {
+                        "firstScene": firstScene,
+                        "sceneFadeDuration": 1000,
+//                        "panorama": img,
+                        "autoLoad": true,
+                        "autoRotate": -2,   //自动旋转,正左,负右,越大越快
+                        "compass": true,
+                        "showControls": false,
+                        "northOffset": 340,
+                        "autoRotateInactivityDelay": 5000,   //动作停止五秒后继续旋转
+                        "targetPitch": 10
+                    },
+                    "scenes": scenes
+//                    {
+//                        "circle": {
+//                            "hfov": 110,
+//                            "pitch": -3,
+//                            "yaw": 117,
+//                            "type": "equirectangular",
+//                            "panorama": img,
+//                            "hotSpots": hot
+//                        }
+//                    }
+                }
+        );
+
+        // Make buttons work
+        document.getElementById('fullscreen').addEventListener('click', function (e) {
+            viewer.toggleFullscreen();
+        });
+        //    document.getElementById('autoRotate').addEventListener('click', function(e) {
+        //        viewer.startAutoRotate(2);
+        //    });
+        //
+        //    setInterval(function () {//每隔5秒执行一次
+        //        $('#autoRotate').trigger("click");//自动执行click事件
+        //    },5000);
+
+        // 全景加载完显示全屏按钮
+        viewer.on("load", function () {
+            $("#fullscreen").css("display", "block");
+        });
+    }
+
+
+    // Hot spot creation function
+    function hotspot(hotSpotDiv, args) {
+        hotSpotDiv.classList.add('custom-tooltip');
+        var span = document.createElement('span');
+        span.innerHTML = args;
+        hotSpotDiv.appendChild(span);
+        span.style.width = span.scrollWidth + 'px';
+        span.style.marginLeft = -(span.offsetWidth + 4 - hotSpotDiv.offsetWidth) / 2 + 'px';
+        span.style.marginTop = -span.offsetWidth - 18 + 'px';
+    }
+
+    // .pnlm-load-button 加载按钮重写
+    $(".pnlm-load-button").html("<p style='font-size: 40px;display: none;'>▶</p>");
+</script>
+
+</body>
+</html>

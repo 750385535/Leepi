@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="stylesheet" href="./lib/jquery.mobile-1.4.5.css" type="text/css">
+    <script src="./lib/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="./js/mobileLoader.js" type="text/javascript"></script>
+    <script src="./lib/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+
+    <!-- Swiper JS -->
+    <script src="Swiper/dist/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="Swiper/dist/css/swiper.min.css">
+
+    <!-- mb.extruder JS -->
+    <link href="Extruder/mbExtruder.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/mbExtruder.css" media="all" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="Extruder/jquery.hoverIntent.min.js"></script>
+    <script type="text/javascript" src="Extruder/jquery.mb.flipText.js"></script>
+    <script type="text/javascript" src="Extruder/mbExtruder.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="Pannellum/pannellum.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/pannellum.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/header.css" type="text/css">
+    <link rel="stylesheet" href="css/footer.css" type="text/css">
+    <link rel="stylesheet" href="css/discovery.css" type="text/css">
+    <link rel="stylesheet" href="css/details2.css" type="text/css">
+</head>
+<body>
+
+<script>
+    $.getUrlParam = function (string) {
+        var obj = new Object();
+        if (string.indexOf("?") != -1) {
+            var string = string.substr(string.indexOf("?") + 1);
+            var strs = string.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                var tempArr = strs[i].split("=");
+                obj[tempArr[0]] = tempArr[1];
+            }
+        }
+        return obj;
+    };
+
+    var data = $.getUrlParam(window.location.href);
+</script>
+<script>
+    var detailImg='';
+//    var callBack=function(detailImg) {
+//        alert(detailImg);
+//    };
+
+    function GetAjaxData(detailID) {
+        $.ajax({
+            timeout: 2000,//请求超时时间（毫秒）
+            type: 'GET',
+            async: true,//异步
+            dataType: "json",//返回json格式的数据
+            url: "details.php?detailID=" + detailID,
+            success: function (data) {
+                var list = data.list;
+                $.each(list, function (i, n) {
+                    $("#details #container #themeInfo .description").html(n['detailsCon']);
+                    $("#details #container .themeTitle .title").html(n['title']);
+                    $("#details #container .themeTitle .meta").html(n['classify']+" / "+n['timeInfo']);
+                    detailImg = n["img"];
+//                    detailImg = n["linkVideo_mp4"];
+                    callBackImg(detailImg);
+                });
+            },
+            error: function (XMLHttpRequest, textStatus) {
+//                alert("异常信息：" + textStatus);
+            }
+        })
+    }
+
+    $(document).on("pagebeforecreate","#details",function () {
+        GetAjaxData(data.id);
+    })
+</script>
+
+<div data-role="page" id="details">
+    <div data-role="header" data-theme="b" data-position="fixed" id="header" style="background: none;border: none;">
+        <a href="" class="icon leftArrow" data-rel="back"></a>
+    </div>
+
+    <div class="themePic" id="themePic">
+        <div id="panoramaImage">
+            <div id="controls">
+                <div class="ctrl" id="fullscreen"></div>
+                <!--<div class="ctrl" id="autoRotate" style="display: none;">R</div>-->
+            </div>
+        </div>
+    </div>
+
+    <div data-role="content" id="container">
+        <div class="detailedHead">
+            <div class="themeTitle">
+                <div class="title">
+                    <!--壁画，墙壁上的艺术-->
+                </div>
+                <div class="meta">
+                    <!--开胃 / 3' 38"-->
+                </div>
+                <div id="TopMenu"></div>
+            </div>
+        </div>
+
+        <div class="themeInfo" id="themeInfo">
+            <P class="description">
+                <!--壁画，墙壁上的艺术，即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画即人们直接画在墙面上的画。作为建筑物的附属部分，它的装饰和美化功能使它成为环境艺术的一个重要方面。壁画为人类历史上最早的绘画形式之一。-->
+            </P>
+        </div>
+
+        <!--<div style="width: 100%;height:600px;background-color: #666;margin-bottom: 60px;"></div>-->
+
+        <div style="width: 100%;height: 1px;background: rgba(102, 102, 102, 0.51);"></div>
+        <div class="dsa">
+            <h2 class="sw-title"><a href="#">搞笑相关视频<span>&nbsp;&nbsp;&nbsp;&nbsp;</span></a></h2>
+            <!--     Swiper -->
+            <div class="swiper-containerE">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <table>
+                            <tr>
+                                <td class="swiper-slide-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="swiper-slide-text">
+                                    <a href="details.html#details" data-role="none" data-transition="slide">
+                                        <div class="title">Papercraft Origami Boxes </div>
+                                        <div class="meta">#动画 / 2016-12-10</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="swiper-slide">
+                        <table>
+                            <tr>
+                                <td class="swiper-slide-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="swiper-slide-text">
+                                    <a href="details.html#details" data-role="none" data-transition="slide">
+                                        <div class="title">Papercraft</div>
+                                        <div class="meta">#动画 / 2016-12-10</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="swiper-slide">
+                        <table>
+                            <tr>
+                                <td class="swiper-slide-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="swiper-slide-text">
+                                    <a href="details.html#details" data-role="none" data-transition="slide">
+                                        <div class="title">Papercraft Origami</div>
+                                        <div class="meta">#动画 / 2016-12-10</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;height: 1px;background: rgba(102, 102, 102, 0.51);margin: 0 12px;"></div>
+        <div class="dsa">
+            <h2 class="sw-title"><a href="#">搞笑相关视频<span>&nbsp;&nbsp;&nbsp;&nbsp;</span></a></h2>
+            <!--     Swiper -->
+            <div class="swiper-containerE">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <table>
+                            <tr>
+                                <td class="swiper-slide-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="swiper-slide-text">
+                                    <a href="details.html#details" data-role="none" data-transition="slide">
+                                        <div class="title">Papercraft Origami Boxes </div>
+                                        <div class="meta">#动画 / 2016-12-10</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="swiper-slide">
+                        <table>
+                            <tr>
+                                <td class="swiper-slide-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="swiper-slide-text">
+                                    <a href="details.html#details" data-role="none" data-transition="slide">
+                                        <div class="title">Papercraft</div>
+                                        <div class="meta">#动画 / 2016-12-10</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="swiper-slide">
+                        <table>
+                            <tr>
+                                <td class="swiper-slide-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="swiper-slide-text">
+                                    <a href="details.html#details" data-role="none" data-transition="slide">
+                                        <div class="title">Papercraft Origami</div>
+                                        <div class="meta">#动画 / 2016-12-10</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;height: 1px;background: rgba(102, 102, 102, 0.51);margin: 0 12px;"></div>
+        <div class="dsa">
+            <h2 class="sw-title"><a href="#">搞笑相关视频<span>&nbsp;&nbsp;&nbsp;&nbsp;</span></a></h2>
+            <!--     Swiper -->
+            <div class="swiper-containerE">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <table>
+                            <tr>
+                                <td class="swiper-slide-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="swiper-slide-text">
+                                    <a href="details.html#details" data-role="none" data-transition="slide">
+                                        <div class="title">Papercraft Origami Boxes </div>
+                                        <div class="meta">#动画 / 2016-12-10</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="swiper-slide">
+                        <table>
+                            <tr>
+                                <td class="swiper-slide-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="swiper-slide-text">
+                                    <a href="details.html#details" data-role="none" data-transition="slide">
+                                        <div class="title">Papercraft</div>
+                                        <div class="meta">#动画 / 2016-12-10</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="swiper-slide">
+                        <table>
+                            <tr>
+                                <td class="swiper-slide-img">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="swiper-slide-text">
+                                    <a href="details.html#details" data-role="none" data-transition="slide">
+                                        <div class="title">Papercraft Origami</div>
+                                        <div class="meta">#动画 / 2016-12-10</div>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;height: 1px;background: rgba(102, 102, 102, 0.51);margin: 0 12px;"></div>
+
+        <p style="color: #666;text-align: center;margin: 40px;padding-bottom: 48px;">-END-</p>
+
+    </div>
+
+    <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" data-icon="forward">分享</a></li>
+                <li><a href="#" data-icon="love">108 收藏</a></li>
+                <li><a href="#" data-icon="comment">12 评论</a></li>
+                <li><a href="#" data-icon="ellipsis">更多</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Pannellum 全景调用 -->
+<script>
+    var callBackImg=function(detailImg) {
+        // Create viewer
+        viewer = pannellum.viewer('panoramaImage', {
+            "default": {
+                "firstScene": "circle",
+                "sceneFadeDuration": 1000,
+                "preview": detailImg,
+                "autoLoad": true,
+                "autoRotate": -2,   //自动旋转,正左,负右,越大越快
+                "compass": true,
+                "showControls": false,
+                "northOffset": 340,
+                "autoRotateInactivityDelay": 5000,   //动作停止五秒后继续旋转
+                "targetPitch": 10
+            },
+
+            "scenes": {
+                "circle": {
+                    "hfov": 110,
+                    "pitch": -3,
+                    "yaw": 117,
+                    "type": "equirectangular",
+                    "panorama": detailImg,
+                    "hotSpots": [
+                        {
+                            "pitch": -20.1,
+                            "yaw": -140.9,
+                            "type": "scene",
+                            "text": "Spring House or Dairy",
+                            "sceneId": "house"
+                        },
+                        {
+                            "pitch": -10,
+                            "yaw": 20,
+                            "cssClass": "custom-hotspot",
+                            "createTooltipFunc": hotspot,
+                            "createTooltipArgs": "<img src='img/panorama/googlespotlightVR.png' alt=''>"
+                        }
+                    ]
+                },
+
+                "house": {
+                    "hfov": 110,
+                    "yaw": 5,
+                    "type": "equirectangular",
+                    "panorama": detailImg,
+                    "hotSpots": [
+                        {
+                            "pitch": -0.6,
+                            "yaw": 37.1,
+                            "type": "scene",
+                            "text": "Mason Circle",
+                            "sceneId": "circle",
+                            "targetYaw": -23,
+                            "targetPitch": 2
+                        }
+                    ]
+                }
+            }
+        });
+    };
+
+    // Make buttons work
+    document.getElementById('fullscreen').addEventListener('click', function(e) {
+        viewer.toggleFullscreen();
+    });
+//    document.getElementById('autoRotate').addEventListener('click', function(e) {
+//        viewer.startAutoRotate(2);
+//    });
+//
+//    setInterval(function () {//每隔5秒执行一次
+//        $('#autoRotate').trigger("click");//自动执行click事件
+//    },5000);
+
+    // 全景加载完显示全屏按钮
+//    viewer.on("load",function () {
+//        $("#fullscreen").css("display","block");
+//    });
+
+    // Hot spot creation function
+    function hotspot(hotSpotDiv, args) {
+        hotSpotDiv.classList.add('custom-tooltip');
+        var span = document.createElement('span');
+        span.innerHTML = args;
+        hotSpotDiv.appendChild(span);
+        span.style.width = span.scrollWidth - 20 + 'px';
+        span.style.marginLeft = -(span.scrollWidth - hotSpotDiv.offsetWidth) / 2 + 'px';
+        span.style.marginTop = -span.scrollHeight - 12 + 'px';
+    }
+
+    // .pnlm-load-button 加载按钮重写
+    $(".pnlm-load-button").html("<p style='font-size: 40px;display: none;'>▶</p>");
+</script>
+
+<!-- 文章点击全屏 -->
+<script src="lib/jquery.fn.toggle.js"></script>
+<script>
+//    $(document).ready(function () {
+//        $(window).resize(function () {
+//            $('#container').css("height", $(window).height() - $(".themePic").height() + "px");
+//            $('#container').css("top", $(".themePic").height() + "px");
+//        });
+//    });
+
+    $('#TopMenu').toggle(
+            function () {
+//                $("#details .themePic").animate(
+//                        {
+//                            height: "20vh"
+//                        }, "normal"
+//                );
+                $("#container").animate(
+                        {
+                            top: 0,
+//                            top: "20vh",
+                            height: '100%'
+                        }, "normal",
+                        function () {
+                            $(this).css("overflow","auto");
+//                            $(".themeInfo").css("margin-top","20vh");
+//                            $(".detailedHead").css("position","fixed");
+                            $('#TopMenu').addClass("kai");
+                            $('#themeInfo').css("height","auto");
+                        }
+                );
+                $(".footer").animate(
+                        {
+                            opacity: 1
+                        }, 2000
+                );
+            },
+            function () {
+//                $("#details .themePic").animate(
+//                        {
+//                            height: "80vh"
+//                        }, "normal"
+//                );
+                $('#container').animate(
+                        {
+                            top: "80vh",
+                            height: $(window).height() - $(".themePic").height() + "px"
+                        }, "normal",
+                        function () {
+                            $(this).css("overflow","hidden");
+//                            $(".themeInfo").css("margin-top","0");
+//                            $(".detailedHead").css("position","relative");
+                            $('#TopMenu').removeClass("kai");
+                        }
+                );
+                $(".footer").animate(
+                        {
+                            opacity: 0
+                        }, "normal"
+                );
+            }
+    );
+</script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper('.swiper-containerE', {
+        paginationClickable: true,
+        slidesPerView: "auto",
+        spaceBetween: 4,
+        freeMode: true,//自由滚动
+        grabCursor: true,    //手掌形状
+        autoplayDisableOnInteraction: false,
+        observer: true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents: true,//修改swiper的父元素时，自动初始化swiper
+    })
+</script>
+
+</body>
+</html>

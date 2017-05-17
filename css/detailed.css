@@ -1,0 +1,84 @@
+#detailed .read-status-bar {
+    width: 100%;
+    height: 2px;
+    background-color: #60c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#detailed .load-status-bar {
+    width: 20%;
+    height: 2px;
+    background-color: #2ac;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+}
+
+#detailed #container {
+    padding-top: 0;
+}
+
+#detailed #container {
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    border: none;
+}
+
+#detailed #container .detailedHead {
+    min-height: 2.8em;
+    position: relative;
+}
+
+#detailed #container .avater {
+    height: 2.8em;
+    width: 2.8em;
+    background-color: #ccc;
+    overflow: hidden;
+    position: absolute;
+    top: 1.8em;
+}
+
+#detailed #container .avater img {
+    width: 100%;
+    height: 100%;
+}
+
+#detailed #container .themeTitle {
+    width: 100%;
+}
+
+#detailed #container .themeTitle p {
+    color: #666;
+    font-size: 12px;
+}
+
+#detailed #container .themeTitle span.time {
+    font-size: 12px;
+    color: #aaa;
+}
+
+#detailed #container .themePic {
+    /*width: 100%;*/
+    width: 120%;
+    height: 280px;
+    overflow: hidden;
+    background-color: #ccc;
+    position: relative;
+    left: -10%;
+}
+
+#detailed #container .themePic img {
+    width: 100%;
+    height: 100%;
+}
+
+#detailed #container .themeInfo p {
+    color: #666;
+    white-space: pre-line;
+    line-height: 1.4em;
+    font-size: 14px;
+}

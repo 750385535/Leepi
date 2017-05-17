@@ -1,0 +1,217 @@
+.blank {
+    width: 100%;
+    height: 1000px;
+    margin-top: -860px;
+    background: #46008c;
+}
+
+#adm .ui-header {
+    background: #46008c;
+    border: none;
+}
+
+.user_info {
+    padding: 1em;
+    text-align: center;
+    font-size: 14px;
+}
+
+.user_info p.idNum {
+    color: #2ac;
+}
+
+.user_info p.personalNote {
+    color: #666;
+}
+
+.account_menu {
+    height: auto;
+    background: #fff;
+    position: relative;
+    overflow: visible;
+}
+
+.account_menu .avater {
+    width: 100px;
+    height: 100px;
+    min-width: 50px;
+    min-height: 50px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.account_menu .avater .avater_img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-sizing: border-box;
+    background-color: #ccc;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.account_menu .avater .insignia {
+    width: 24px;
+    height: 24px;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    position: absolute;
+    background-color: white;
+    background-size: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../img/quality.svg);
+    display: none;
+}
+
+.account_menu .Follow {
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 0;
+
+}
+
+.account_menu .Follow a {
+    color: #666;
+    font-size: 10px;
+    float: right;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    background: none;
+    box-shadow: none !important;
+}
+
+.account_menu .Follow .FOLLOWERS {
+    float: left;
+}
+
+.account_menu .Follow .FOLLOWING {
+    float: right;
+}
+
+.account_menu .Follow a:hover {
+    background: none;
+}
+
+.account_menu .Follow a h2 {
+    color: #000;
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 4px;
+    font-weight: 400 !important;
+
+}
+
+.lie {
+    background: #fff;
+    margin: 10px 0;
+}
+
+.lie ul li {
+    padding-left: 4em;
+}
+
+.lie ul li:hover {
+    background: #f6f6f6 !important;
+}
+
+.lie ul li:focus {
+    background: #ededed !important;
+}
+
+.lie ul li a.ui-btn {
+    border-color: #f2f2f2 !important;
+    background: none !important;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none !important;
+    overflow: visible;
+}
+
+.lie ul li a.ui-btn.ui-btn-icon-right.ui-icon-carat-r:after {
+    background: none;
+    background-image: url(../img/right-arrow-black.svg);
+    background-size: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.lie ul li:nth-of-type(1) a {
+    border: none;
+}
+
+.lie ul li:nth-last-of-type(1) a {
+    border-bottom: none;
+}
+
+/*.lie ul li:nth-of-type(1) {*/
+    /*border-top: 1px solid #ddd;*/
+/*}*/
+
+/*.lie ul li:nth-last-of-type(1) {*/
+    /*border-bottom: 1px solid #ddd;*/
+/*}*/
+
+.lie ul li span {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+    background-position-x: 1.4em;
+}
+
+.lie ul li span._icon1 {
+    background-image: url(../img/icons-Name.svg);
+}
+
+.lie ul li span._icon2 {
+    background-image: url(../img/pswd.svg);
+}
+
+.lie ul li span._icon3 {
+    background-image: url(../img/LOGIN.svg);
+}
+
+.lie ul li span._icon4 {
+    background-image: url(../img/thumb-up.svg);
+}
+
+.lie ul li span._icon5 {
+    background-image: url(../img/multimedia-1.svg);
+}
+
+.lie ul li span._icon6 {
+    background-image: url(../img/compact-disc.svg);
+}
+
+.lie ul li span._icon7 {
+    background-image: url(../img/next.svg);
+}
+
+.lie ul li span._icon8 {
+    background-image: url(../img/LOGOUT.svg);
+}
+.lie ul li span._icon9 {
+    background-image: url(../img/heart-shape-silhouette-gray.svg);
+}
+
+.lie ul li span._icon10 {
+    background-image: url(../img/comment.svg);
+}
+
+.lie ul li span._icon11 {
+    background-image: url(../img/following.svg);
+}

@@ -1,0 +1,78 @@
+#classList-fenLei .dowebok {
+    margin: 0;
+    background: #fff;
+}
+
+#classList-fenLei .dowebok li {
+    overflow: hidden;
+    padding-bottom: 2px;
+}
+
+#classList-fenLei .dowebok li.ui-block-a {
+    padding-right: 1px;
+}
+
+#classList-fenLei .dowebok li.ui-block-b {
+    padding-left: 1px;
+}
+
+#classList-fenLei .dowebok li a {
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+}
+
+#classList-fenLei .dowebok li a .classify_box {
+    width: 100%;
+    height: 0;
+    background-color: #ccc;
+    padding-bottom: 100%;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#classList-fenLei .dowebok li a .classify_box .img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-filter: brightness(.7);
+    filter: brightness(.7);
+}
+
+#classList-fenLei .dowebok li a .classify_box h4 {
+    width: 100%;
+    margin: 0;
+    color: white;
+    line-height: 0;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+}
+
+#classList-fenLei .dowebok li a .text {
+    padding: 1em 0;
+}
+
+#classList-fenLei .dowebok li a span {
+    margin: 0;
+    color: #333;
+    font-size: 12px;
+}
+
+#classList-fenLei .dowebok li a span:nth-of-type(2) {
+    color: rgba(34, 34, 34, 0.6);
+}
+
+#classList-fenLei .dowebok li.panorama {
+
+}
+
+#classList-fenLei .dowebok li.panorama a .classify_box {
+    padding-bottom: 50vw;
+    border-radius: 0;
+}

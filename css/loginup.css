@@ -1,0 +1,181 @@
+/*----------------------------------#login, #register----------------------------------*/
+#login,
+#register {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background: #411e6c;
+}
+
+#login .ui-content,
+#register .ui-content {
+    height: 100%;
+    padding: 0 1em;
+    position: relative;
+    z-index: 1;
+}
+
+#login .LOGO img,
+#register .LOGO img {
+    width: 20%;
+    height: 20%;
+    margin: 18%;
+    min-width: 80px;
+    max-width: 140px;
+}
+
+#login form,
+#register form {
+    position: relative;
+    width: 88%;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+#login form div.ui-input-text.ui-body-inherit.ui-corner-all.ui-focus,
+#register form div.ui-input-text.ui-body-inherit.ui-corner-all.ui-focus {
+    box-shadow: none;
+}
+
+#login input,
+#register input {
+    width: 100%;
+    outline: none;
+    outline-width: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+#login form input[name=id],
+#login form input[name=passwd],
+#register form input[name=id],
+#register form input[name=passwd],
+#register form input[name=repasswd] {
+    height: 42px;
+    border: 1px solid #fff;
+    padding: 0 32px 0 10px;
+    font-size: 14px;
+    box-shadow: inset 0 0 0 10em #fff;
+}
+
+#login form input[name=id],
+#register form input[name=id] {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+}
+
+#login form input[name=passwd],
+#register form input[name=repasswd] {
+    border-top-left-radius: 0;
+    -webkit-border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    -webkit-border-top-right-radius: 0;
+}
+
+#register form input[name=passwd] {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+#login form .ui-btn,
+#register form .ui-btn {
+    color: white;
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+#login form input[name=submit],
+#login form input[type=reset],
+#register form input[name=submit],
+#register form input[type=reset] {
+    width: 100%;
+    height: 42px;
+    border: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 1;
+    -moz-opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+#login form input[name=submit]:active,
+#login form input[type=reset]:active,
+#register form input[name=submit]:active,
+#register form input[type=reset]:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#login h5 a,
+#register h5 a {
+    color: white;
+    text-decoration: none;
+}
+
+#login h5 a:hover,
+#register h5 a:hover {
+    text-decoration: underline;
+}
+
+#login h5 a:active,
+#register h5 a:active {
+    color: #ccc;
+}
+
+#login_pop,
+#register_pop {
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    background: rgba(95, 63, 187, 0.8);
+    font-size: 14px;
+    padding: 1em 0;
+    position: absolute;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    display: none;
+}
+
+#login iframe,
+#register iframe {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/*----------------------------#login, #register->form->lable----------------------------*/
+#clearInputPasswd,
+#clearInputRepasswd,
+#clearInputId {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 0;
+    display: none;
+    margin: 0;
+    width: 32px;
+    height: 42px;
+}
+
+#clearInputPasswd::after,
+#clearInputId::after,
+#clearInputRepasswd::after {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(../img/deleteicon.svg);
+    background-size: 12px 12px;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    filter: alpha(opacity=50);
+}

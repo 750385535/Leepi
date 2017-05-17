@@ -1,0 +1,172 @@
+/** {*/
+/*font-weight: 200 !important;*/
+/*font-family: "Myriad Set Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;*/
+/*}*/
+
+/*html, body {*/
+/*overflow: hidden;*/
+/*}*/
+
+/*table, tr, td {*/
+/*border-collapse: collapse;*/
+/*}*/
+
+#map, #map div[data-role='main'] {
+    height: 100%;
+}
+
+#mapContent {
+    height: 100%;
+}
+
+.header {
+    width: 100%;
+    height: 48px;
+    position: fixed;
+    background: #46008c;
+    z-index: 1;
+}
+
+.search {
+    width: 60%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.search input {
+    width: 100%;
+    height: 32px;
+    padding: 10px;
+    padding-right: 28px;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    font-size: 14px;
+    position: absolute;
+    box-sizing: border-box;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.search #tipinputIcon {
+    width: 22px;
+    height: 22px;
+    background-size: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../img/magnifying-glass-black.svg);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 4px;
+    margin: auto 0;
+}
+
+.amap-info-content {
+    padding: 2px;
+    border: none;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.amap-info-close {
+    color: white !important;
+    right: 5px !important;
+    text-align: center;
+}
+
+.amap-info-content a {
+    text-decoration: none;
+    color: #333;
+}
+
+.amap-info-content a p {
+    margin: 4px 0;
+}
+
+.amap-info-sharp {
+    height: 16px !important;
+    width: 28px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    /*background-image: url(img/bottom-arrow.svg);*/
+    opacity: 0.8;
+    top: 0;
+}
+
+.amap-icon img {
+    width: 2em;
+    height: 2em;
+    top: 0 !important;
+}
+
+.amap-touch-toolbar .amap-zoomcontrol {
+    bottom: -50px !important;
+}
+
+.amap-sug-result {
+    width: 50vw;
+    border: none;
+    margin-top: -2px;
+    border-top: 1px solid #ddd;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0 2px 2px;
+    background: white;
+    display: none;
+}
+
+.auto-item {
+    padding: 6px 10px;
+}
+
+.auto-item:hover {
+    background: #dddddd;
+}
+
+.auto-item-span {
+    color: #999999;
+}
+
+.amap-logo {
+    display: none;
+    visibility: hidden;
+}
+
+.amap-copyright {
+    display: none;
+    visibility: hidden;
+}
+
+.amap-pancontrol {
+    display: none !important;
+}
+
+.amap-toolbar {
+    right: 12px !important;
+    top: 60px !important;
+}
+
+#satellLayer {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto 1em;
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../img/icon-weistar.svg);
+    display: none;
+}
+
+#satellLayer.active {
+    opacity: 0.7;
+}

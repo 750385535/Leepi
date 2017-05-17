@@ -1,0 +1,88 @@
+#panorama div[data-role="main"] table,
+#panorama div[data-role="main"] tr,
+#panorama div[data-role="main"] th,
+#panorama div[data-role="main"] td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-collapse: collapse;
+    /*padding-bottom: 5px;*/
+}
+
+#panorama div[data-role="main"] tr {
+    width: 100%;
+    height: 32vh;
+    position: relative;
+}
+
+#panorama div[data-role="main"] td:nth-of-type(1) {
+    width: 100%;
+    height: 32vh;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+    color: #ffffff;
+    /*background-color: rgba(0, 0, 0, 0.2);*/
+}
+
+#panorama div[data-role="main"] td:nth-of-type(1) h4,
+#panorama div[data-role="main"] td:nth-of-type(1) h6 {
+    margin: 0;
+    padding: 8px 0;
+    text-shadow: 0 0 8px #22aacc !important;
+}
+
+#panorama div[data-role="main"] td:nth-of-type(1) h4 {
+    font-weight: 400 !important;
+}
+
+#panorama div[data-role="main"] td:nth-of-type(1) h6 {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#panorama div[data-role="main"] td:nth-of-type(1) .iconClass1, #panorama div[data-role="main"] td:nth-of-type(1) .iconClass2 {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+    width: 22px;
+    height: 22px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px 18px;
+    opacity: 0.5;
+}
+
+#panorama div[data-role="main"] td:nth-of-type(1) .iconClass1 {
+    background-image: url(../img/play-arrow.svg);
+}
+
+#panorama div[data-role="main"] td:nth-of-type(1) .iconClass2 {
+    background-image: url(../img/photo.svg);
+}
+
+#panorama div[data-role="main"] td:nth-of-type(2) {
+    width: 100%;
+    height: 32vh;
+    position: absolute;
+    left: 0;
+}
+
+#panorama div[data-role="main"] td:nth-of-type(3) {
+    width: 100%;
+    height: 32vh;
+    position: absolute;
+    z-index: 101;
+    left: 0;
+}
+
+#panorama div[data-role="main"] td:nth-of-type(3) a {
+    line-height: 32vh;
+    display: block;
+    text-decoration: none;
+}
+
+#panorama div[data-role="main"] td:nth-of-type(2) img {
+    width: 100%;
+    height: 100%;
+    background-color: #cccccc;
+}

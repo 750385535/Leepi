@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="Calendar/calendar.css">
+<style type="text/css">
+    #demo {
+        /*width: 400px;*/
+        margin: auto;
+        padding-bottom: 20px;
+        background-color: #fafafa;
+        font: 500 14px 'roboto';
+    }
+
+    #demo a {
+        text-decoration: none;
+    }
+
+    ul, ol, li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #demo li {
+        width: 14.2857142%;
+    }
+
+    #demo p {
+        margin: 0;
+    }
+
+
+    /*#demo #ca {*/
+        /*height: 360px;*/
+    /*}*/
+
+    /*#demo .calendar-display {*/
+        /*color: #888;*/
+        /*font-size: 22px;*/
+    /*}*/
+
+    /*.view.view-date {*/
+        /*height: 800px;*/
+    /*}*/
+</style>
+
+<div id="demo">
+    <div id="ca"></div>
+    <a id="calendarClick" href=""><span></span></a>
+</div>
+
+<script src="Calendar/calendar.js"></script>
+<script>
+    Date.prototype.format = function(exp) {
+        var y = this.getFullYear(),
+                m = this.getMonth() + 1,
+                d = this.getDate();
+        if(m<10){
+            m="0"+m;
+        }
+        if(d<10){
+            d="0"+d;
+        }
+        return exp.replace('yyyy', y).replace('mm', m).replace('dd', d);
+    };
+
+    $('#ca').calendar({
+        width: '100vw',
+        height: 360,
+        selectedRang: ['2016/01/01',new Date()],
+        data: [
+            {
+                date: '2015/12/24',
+                value: 'Christmas Eve'
+            },
+            {
+                date: '2015/12/25',
+                value: 'Merry Christmas'
+            },
+            {
+                date: '2017/01/01',
+                value: 'Happy New Year'
+            }
+        ],
+        onSelected: function (view, date, data) {
+            console.log('view:' + view);
+//            alert('date:' + date);
+            var cc = date.format('yyyy-mm-dd');
+
+//            $.mobile.changePage("#CalendarDayJX",{
+//                type:'get',
+//                data:"date="+cc,
+//                transition: "slideup"
+//            });
+
+            $('#calendarClick').attr('href','?date='+cc+'#CalendarDayJX');
+            $('#calendarClick span').trigger('click');
+
+            console.log('data:' + (data || 'None'));
+        },
+        onClose: function (view, date, data) {
+            console.log('event: onClose');
+            console.log('view:' + view);
+            console.log('date:' + date);
+            console.log('data:' + (data || 'None'));
+        }
+    });
+</script>
+<script>
+    function GetAjaxCalendarDayData() {
+        $.ajax({
+            timeout: 5000,//请求超时时间（毫秒）
+            type: 'GET',
+            async: true,//异步
+            dataType: "json",//返回json格式的数据
+            url: "Ajax/CalendarDay.php",
+            success: function (data) {
+//                alert(data);
+            }
+        });
+    }
+
+//    GetAjaxCalendarDayData();
+</script>

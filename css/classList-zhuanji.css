@@ -1,0 +1,87 @@
+#myFollowing .ui-content,
+#myFollowing .ui-content,
+#classList-zhuanji .ui-content {
+    padding: 0;
+}
+
+#myFollowing div[data-role="main"] ul.author-List,
+#myFollowing div[data-role="main"] ul.classify-List,
+#classList-zhuanji div[data-role="main"].zhuanji-List ul {
+    margin: 0;
+}
+
+#myFollowing div[data-role="main"] ul.author-List li,
+#myFollowing div[data-role="main"] ul.classify-List li,
+#classList-zhuanji div[data-role="main"].zhuanji-List ul li {
+    width: 100%;
+    display:table;/*垂直居中替代方案-父元素*/
+    margin: 2px 0
+}
+
+#myFollowing div[data-role="main"] ul.author-List li a,
+#myFollowing div[data-role="main"] ul.classify-List li a,
+#classList-zhuanji div[data-role="main"].zhuanji-List ul li a {
+    height: 80px;
+    /*line-height: 80px;*/
+    vertical-align:middle;
+    display:table-cell;/*垂直居中替代方案-子元素*/
+    background-color: #fff;
+    box-shadow: none !important;
+    padding: 0;
+    padding-left: 90px;
+    padding-right: 1em;
+    border: none;
+    color: #300061;
+}
+
+#myFollowing div[data-role="main"] ul.author-List li a:hover,
+#myFollowing div[data-role="main"] ul.classify-List li a:hover,
+#classList-zhuanji div[data-role="main"].zhuanji-List ul li a:hover {
+    background-color: #f6f6f6;
+}
+
+#myFollowing div[data-role="main"] ul.author-List li a:focus,
+#myFollowing div[data-role="main"] ul.classify-List li a:focus,
+#classList-zhuanji div[data-role="main"].zhuanji-List ul li a:focus {
+    background-color: #ededed;
+}
+
+
+#myFollowing div[data-role="main"] ul.author-List li a img,
+#myFollowing div[data-role="main"] ul.classify-List li a img,
+#classList-zhuanji div[data-role="main"].zhuanji-List ul li a img {
+    width: 80px;
+    height: 80px;
+    padding: 8px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    -webkit-filter: brightness(.7);
+    filter: brightness(.7);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#myFollowing div[data-role="main"] ul.classify-List li a img {
+    border-radius: 0;
+}
+
+
+#myFollowing div[data-role="main"] ul.author-List li a span:nth-of-type(1),
+#myFollowing div[data-role="main"] ul.classify-List li a span:nth-of-type(1),
+#classList-zhuanji div[data-role="main"].zhuanji-List ul li a span:nth-of-type(1) {
+    font-size: 12px;
+    color: #999;
+}
+
+#myFollowing div[data-role="main"] ul.author-List li a span:nth-of-type(2),
+#myFollowing div[data-role="main"] ul.classify-List li a span:nth-of-type(2),
+#classList-zhuanji div[data-role="main"].zhuanji-List ul li a span:nth-of-type(2) {
+    font-size: 12px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 2px 8px;
+    position: absolute;
+    right: 12px;
+    top: 30px;
+}
